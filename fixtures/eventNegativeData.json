@@ -1,0 +1,40 @@
+{
+    "baseEvent": {
+        "title": "Negative API Testing Event",
+        "description": "Testing EventHub API validation",
+        "category": "Conference",
+        "venue": "Automation Testing Center",
+        "city": "Chennai",
+        "eventDate": "2027-01-15T10:00:00.000Z",
+        "price": 1000,
+        "totalSeats": 100,
+        "imageUrl": "https://example.com/test-event.jpg"
+    },
+
+    "negativeCases": [
+        {
+            "name": "Missing title",
+            "field": "title",
+            "message": "Title is required",
+            "removeField": "title"
+        },
+        {
+            "name": "Missing category",
+            "field": "category",
+            "message": "Category is required",
+            "removeField": "category"
+        },
+        {
+            "name": "Invalid price",
+            "field": "price",
+            "message": "Price must be a non-negative number",
+            "value": "INVALID"
+        },
+        {
+            "name": "Invalid total seats",
+            "field": "totalSeats",
+            "message": "Total seats must be a positive integer",
+            "value": -10
+        }
+    ]
+}

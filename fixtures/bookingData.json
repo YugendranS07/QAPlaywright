@@ -1,0 +1,11 @@
+{
+    "customer": {
+        "name": "Yugendran",
+        "email": "sampletest123@gmail.com",
+        "phone": "9876543210"
+    },
+
+    "event": {
+        "searchText": "dill"
+    }
+}

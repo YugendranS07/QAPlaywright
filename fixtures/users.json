@@ -1,0 +1,44 @@
+{
+  "validUser": {
+    "email": "syugicontact@gmail.com",
+    "password": "Johntest123@"
+  },
+  "invalidUser": {
+    "email": "wrong@email.com",
+    "password": "WrongPassword123"
+  },
+  "invalidPassword": {
+    "email": "your-valid-email",
+    "password": "WrongPassword123"
+  },
+  "emptyEmail": {
+    "email": "",
+    "password": "your-valid-password"
+  },
+  "emptyPassword": {
+    "email": "your-valid-email",
+    "password": ""
+  },
+  "emptyCredentials": {
+    "email": "",
+    "password": ""
+  },
+  "invalidEmailFormat": {
+    "email": "abc123",
+    "password": "Password123"
+  },
+  "invalidScenarios": [
+    {
+      "name": "Invalid email and password",
+      "email": "wrong@test.com",
+      "password": "Wrong123",
+      "message": "Invalid email or password"
+    },
+    {
+      "name": "Valid email and invalid password",
+      "email": "your-valid-email@example.com",
+      "password": "Wrong123",
+      "message": "Invalid email or password"
+    }
+  ]
+}

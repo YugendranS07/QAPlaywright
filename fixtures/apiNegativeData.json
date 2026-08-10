@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Missing title",
+        "payload": {
+            "description": "Testing EventHub API validation",
+            "category": "Conference",
+            "venue": "Automation Testing Center",
+            "city": "Chennai",
+            "eventDate": "2027-01-15T10:00:00.000Z",
+            "price": 1000,
+            "totalSeats": 100,
+            "imageUrl": "https://example.com/test-event.jpg"
+        },
+        "expectedStatus": 400,
+        "expectedField": "title",
+        "expectedMessage": "Title is required"
+    },
+    {
+        "name": "Missing category",
+        "payload": {
+            "title": "Negative API Testing Event",
+            "description": "Testing EventHub API validation",
+            "venue": "Automation Testing Center",
+            "city": "Chennai",
+            "eventDate": "2027-01-15T10:00:00.000Z",
+            "price": 1000,
+            "totalSeats": 100,
+            "imageUrl": "https://example.com/test-event.jpg"
+        },
+        "expectedStatus": 400,
+        "expectedField": "category",
+        "expectedMessage": "Category is required"
+    },
+    {
+        "name": "Invalid price",
+        "payload": {
+            "title": "Negative API Testing Event",
+            "description": "Testing EventHub API validation",
+            "category": "Conference",
+            "venue": "Automation Testing Center",
+            "city": "Chennai",
+            "eventDate": "2027-01-15T10:00:00.000Z",
+            "price": "INVALID",
+            "totalSeats": 100,
+            "imageUrl": "https://example.com/test-event.jpg"
+        },
+        "expectedStatus": 400,
+        "expectedField": "price",
+        "expectedMessage": "Price must be a non-negative number"
+    },
+    {
+        "name": "Invalid total seats",
+        "payload": {
+            "title": "Negative API Testing Event",
+            "description": "Testing EventHub API validation",
+            "category": "Conference",
+            "venue": "Automation Testing Center",
+            "city": "Chennai",
+            "eventDate": "2027-01-15T10:00:00.000Z",
+            "price": 1000,
+            "totalSeats": -10,
+            "imageUrl": "https://example.com/test-event.jpg"
+        },
+        "expectedStatus": 400,
+        "expectedField": "totalSeats",
+        "expectedMessage": "Total seats must be a positive integer"
+    }
+]
