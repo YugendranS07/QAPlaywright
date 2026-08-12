@@ -3,12 +3,16 @@ class APIUtils {
 
     constructor(request) {
 
-        this.request = request;
+    
 
-        this.token = null;
+    this.request = request;
 
-        this.baseURL =
-            process.env.API_BASE_URL;
+    this.token = null;
+
+    this.baseURL =
+        process.env.API_BASE_URL ||
+        'https://api.eventhub.rahulshettyacademy.com/api';
+}
      
     }
 
