@@ -4,7 +4,8 @@ pipeline {
 
     environment {
 
-        BASE_URL = 'https://eventhub.rahulshettyacademy.com'
+        BASE_URL =
+            'https://eventhub.rahulshettyacademy.com'
 
         API_BASE_URL =
             'https://api.eventhub.rahulshettyacademy.com/api'
@@ -18,25 +19,48 @@ pipeline {
 
     stages {
 
+        // ==========================================
+        // CHECKOUT
+        // ==========================================
+
         stage('Checkout') {
+
             steps {
                 checkout scm
             }
         }
 
+
+        // ==========================================
+        // INSTALL DEPENDENCIES
+        // ==========================================
+
         stage('Install Dependencies') {
+
             steps {
                 bat 'npm ci'
             }
         }
 
+
+        // ==========================================
+        // INSTALL PLAYWRIGHT
+        // ==========================================
+
         stage('Install Playwright Browsers') {
+
             steps {
                 bat 'npx playwright install chromium'
             }
         }
 
+
+        // ==========================================
+        // RUN TESTS
+        // ==========================================
+
         stage('Run Playwright Tests') {
+
             steps {
 
                 catchError(
@@ -48,13 +72,35 @@ pipeline {
                 }
             }
         }
+
+
+        // ==========================================
+        // ALLURE REPORT
+        // ==========================================
+
+        stage('Generate Allure Report') {
+
+            steps {
+
+                allure([
+                    results: [
+                        [path: 'allure-results']
+                    ]
+                ])
+            }
+        }
     }
+
+
+    // ==============================================
+    // POST ACTIONS
+    // ==============================================
 
     post {
 
         always {
 
-            echo 'Collecting test reports...'
+            echo 'Collecting test artifacts...'
 
             archiveArtifacts(
                 artifacts: 'playwright-report/**',
@@ -72,12 +118,21 @@ pipeline {
             )
         }
 
+
         success {
-            echo 'Playwright automation execution PASSED'
+
+            echo '========================================'
+            echo 'PLAYWRIGHT AUTOMATION PASSED'
+            echo '========================================'
         }
 
+
         failure {
-            echo 'Playwright automation execution FAILED'
+
+            echo '========================================'
+            echo 'PLAYWRIGHT AUTOMATION FAILED'
+            echo 'CHECK ALLURE AND PLAYWRIGHT REPORTS'
+            echo '========================================'
         }
     }
 }
