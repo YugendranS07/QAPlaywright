@@ -3,8 +3,17 @@ pipeline {
     agent any
 
     environment {
+
         BASE_URL = 'https://eventhub.rahulshettyacademy.com'
-        API_BASE_URL = 'https://api.eventhub.rahulshettyacademy.com/api'
+
+        API_BASE_URL =
+            'https://api.eventhub.rahulshettyacademy.com/api'
+
+        TEST_USER_EMAIL =
+            credentials('eventhub-test-email')
+
+        TEST_USER_PASSWORD =
+            credentials('eventhub-test-password')
     }
 
     stages {
@@ -23,16 +32,18 @@ pipeline {
 
         stage('Install Playwright Browsers') {
             steps {
-                bat 'npx playwright install'
+                bat 'npx playwright install chromium'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
+
                 catchError(
                     buildResult: 'FAILURE',
                     stageResult: 'FAILURE'
                 ) {
+
                     bat 'npx playwright test'
                 }
             }
