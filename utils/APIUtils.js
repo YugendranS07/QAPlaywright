@@ -12,7 +12,7 @@ class APIUtils {
     this.baseURL =
         process.env.API_BASE_URL ||
         'https://api.eventhub.rahulshettyacademy.com/api';
-}
+
      
     }
 

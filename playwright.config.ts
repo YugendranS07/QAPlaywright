@@ -52,8 +52,11 @@ module.exports = defineConfig({
 
     use: {
 
-        baseURL:
-            process.env.UI_BASE_URL,
+  
+    baseURL:
+        process.env.BASE_URL ||
+        'https://eventhub.rahulshettyacademy.com',
+
 
         // Capture trace when test retries
         trace: 'on-first-retry',
