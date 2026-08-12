@@ -2,6 +2,11 @@ pipeline {
 
     agent any
 
+    environment {
+        BASE_URL = 'https://eventhub.rahulshettyacademy.com'
+        API_BASE_URL = 'https://api.eventhub.rahulshettyacademy.com/api'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -57,11 +62,11 @@ pipeline {
         }
 
         success {
-            echo 'All Playwright tests passed.'
+            echo 'Playwright automation execution PASSED'
         }
 
         failure {
-            echo 'Playwright tests failed. Check the reports and artifacts.'
+            echo 'Playwright automation execution FAILED'
         }
     }
 }
